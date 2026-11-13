@@ -1,0 +1,27 @@
+sft_checkpoint_dir: "checkpoints/sft-qwen2.5-3b"
+base_model_name: "unsloth/Qwen2.5-3B-Instruct-bnb-4bit"
+fallback_model_name: "Qwen/Qwen2.5-3B-Instruct"
+merged_output_dir: "checkpoints/weightbake-3b-merged"
+max_seq_length: 1024
+max_prompt_length: 256
+
+dpo:
+  beta: 0.1
+  loss_type: "sigmoid"
+  output_dir: "checkpoints/dpo-qwen2.5-3b"
+  num_train_epochs: 1
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 8
+  learning_rate: 5.0e-6
+  lr_scheduler_type: "cosine"
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  optim: "adamw_8bit"
+  logging_steps: 5
+  save_strategy: "epoch"
+  seed: 3407
+
+data:
+  train_file: "data/dpo_train.jsonl"
+  holdout_file: "data/test_holdout.jsonl"
+  val_split_ratio: 0.05

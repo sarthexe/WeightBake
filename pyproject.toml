@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "weightbake"
+version = "0.1.0"
+description = "WeightBake: Context Distillation (SFT + DPO) and Inference Optimization for Ultra-Low-Latency Voice Routing"
+requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2.7.0",
+    "tiktoken>=0.7.0",
+    "rich>=13.8.0",
+    "pytest>=8.0.0",
+    "openai>=1.50.0",
+    "datasets>=3.0.0",
+    "httpx>=0.27.0",
+    "tqdm>=4.66.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0.1",
+]
+
+[project.scripts]
+weightbake = "src.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

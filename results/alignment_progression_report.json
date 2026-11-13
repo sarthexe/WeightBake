@@ -1,0 +1,110 @@
+{
+  "base_unprompted": {
+    "stage": "base_unprompted",
+    "system_prompt_type": "minimal",
+    "prefill_system_tokens": 10,
+    "total_samples": 80,
+    "full_compliance_count": 10,
+    "full_compliance_rate": 12.5,
+    "mean_check_score": 70.0,
+    "per_check_pass_rates": {
+      "no_markdown_wrapper": 90.0,
+      "valid_json": 77.5,
+      "strict_schema": 66.25,
+      "spoken_word_count_5_to_22": 66.25,
+      "zero_sycophancy": 62.5,
+      "tts_safe_punctuation": 63.74999999999999,
+      "routing_accuracy": 63.74999999999999
+    },
+    "per_check_counts": {
+      "no_markdown_wrapper": 72,
+      "valid_json": 62,
+      "strict_schema": 53,
+      "spoken_word_count_5_to_22": 53,
+      "zero_sycophancy": 50,
+      "tts_safe_punctuation": 51,
+      "routing_accuracy": 51
+    }
+  },
+  "base_bloated": {
+    "stage": "base_bloated",
+    "system_prompt_type": "bloated",
+    "prefill_system_tokens": 1922,
+    "total_samples": 80,
+    "full_compliance_count": 65,
+    "full_compliance_rate": 81.25,
+    "mean_check_score": 94.10714285714286,
+    "per_check_pass_rates": {
+      "no_markdown_wrapper": 96.25,
+      "valid_json": 96.25,
+      "strict_schema": 93.75,
+      "spoken_word_count_5_to_22": 92.5,
+      "zero_sycophancy": 92.5,
+      "tts_safe_punctuation": 93.75,
+      "routing_accuracy": 93.75
+    },
+    "per_check_counts": {
+      "no_markdown_wrapper": 77,
+      "valid_json": 77,
+      "strict_schema": 75,
+      "spoken_word_count_5_to_22": 74,
+      "zero_sycophancy": 74,
+      "tts_safe_punctuation": 75,
+      "routing_accuracy": 75
+    }
+  },
+  "sft_minimal": {
+    "stage": "sft_minimal",
+    "system_prompt_type": "minimal",
+    "prefill_system_tokens": 10,
+    "total_samples": 80,
+    "full_compliance_count": 67,
+    "full_compliance_rate": 83.75,
+    "mean_check_score": 97.67857142857143,
+    "per_check_pass_rates": {
+      "no_markdown_wrapper": 100.0,
+      "valid_json": 100.0,
+      "strict_schema": 100.0,
+      "spoken_word_count_5_to_22": 92.5,
+      "zero_sycophancy": 91.25,
+      "tts_safe_punctuation": 100.0,
+      "routing_accuracy": 100.0
+    },
+    "per_check_counts": {
+      "no_markdown_wrapper": 80,
+      "valid_json": 80,
+      "strict_schema": 80,
+      "spoken_word_count_5_to_22": 74,
+      "zero_sycophancy": 73,
+      "tts_safe_punctuation": 80,
+      "routing_accuracy": 80
+    }
+  },
+  "dpo_minimal": {
+    "stage": "dpo_minimal",
+    "system_prompt_type": "minimal",
+    "prefill_system_tokens": 10,
+    "total_samples": 80,
+    "full_compliance_count": 78,
+    "full_compliance_rate": 97.5,
+    "mean_check_score": 99.64285714285714,
+    "per_check_pass_rates": {
+      "no_markdown_wrapper": 100.0,
+      "valid_json": 100.0,
+      "strict_schema": 100.0,
+      "spoken_word_count_5_to_22": 97.5,
+      "zero_sycophancy": 100.0,
+      "tts_safe_punctuation": 100.0,
+      "routing_accuracy": 100.0
+    },
+    "per_check_counts": {
+      "no_markdown_wrapper": 80,
+      "valid_json": 80,
+      "strict_schema": 80,
+      "spoken_word_count_5_to_22": 78,
+      "zero_sycophancy": 80,
+      "tts_safe_punctuation": 80,
+      "routing_accuracy": 80
+    }
+  }
+}

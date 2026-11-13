@@ -1,0 +1,1555 @@
+{
+  "summary": {
+    "stage": "dpo_minimal",
+    "system_prompt_type": "minimal",
+    "prefill_system_tokens": 10,
+    "total_samples": 80,
+    "full_compliance_count": 78,
+    "full_compliance_rate": 97.5,
+    "mean_check_score": 99.64285714285714,
+    "per_check_pass_rates": {
+      "no_markdown_wrapper": 100.0,
+      "valid_json": 100.0,
+      "strict_schema": 100.0,
+      "spoken_word_count_5_to_22": 97.5,
+      "zero_sycophancy": 100.0,
+      "tts_safe_punctuation": 100.0,
+      "routing_accuracy": 100.0
+    },
+    "per_check_counts": {
+      "no_markdown_wrapper": 80,
+      "valid_json": 80,
+      "strict_schema": 80,
+      "spoken_word_count_5_to_22": 78,
+      "zero_sycophancy": 80,
+      "tts_safe_punctuation": 80,
+      "routing_accuracy": 80
+    }
+  },
+  "samples": [
+    {
+      "id": "holdout_outage_0",
+      "expected_intent": "technical_outage",
+      "expected_tool": "run_diagnostics",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"technical_outage\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"run_diagnostics\",\"arguments\":{\"service_name\":\"ap-south-media-relay\",\"error_code\":\"MTLS_CERT_EXPIRED\"}},\"internal_reasoning\":\"Outage MTLS_CERT_EXPIRED on ap-south-media-relay; trigger diagnostics.\",\"spoken_response\":\"Running live diagnostics on AP South media relay and notifying on-call engineers.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_logistics_5",
+      "expected_intent": "order_logistics",
+      "expected_tool": "track_shipment",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"order_logistics\",\"urgency\":\"high\",\"requires_human\":false,\"tool_call\":{\"name\":\"track_shipment\",\"arguments\":{\"order_id\":\"ORD-96411\"}},\"internal_reasoning\":\"Shipment tracking request for order ORD-96411 to Denver.\",\"spoken_response\":\"I am retrieving live carrier tracking updates for order ORD-96411 now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_legal_4",
+      "expected_intent": "compliance_legal",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"compliance_legal\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"legal\",\"priority_code\":1}},\"internal_reasoning\":\"Legal or regulatory compliance demand; escalate legal P1.\",\"spoken_response\":\"Routing your legal compliance notice to our legal team with priority one.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_billing_5",
+      "expected_intent": "billing_dispute",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"billing_dispute\",\"urgency\":\"high\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"billing_tier2\",\"priority_code\":1}},\"internal_reasoning\":\"High-value 19,750 chargeback dispute on AC-9914; escalate billing_tier2.\",\"spoken_response\":\"Routing your disputed enterprise balance to a tier two billing specialist right now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_sub_0",
+      "expected_intent": "subscription_change",
+      "expected_tool": "modify_subscription",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"subscription_change\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"modify_subscription\",\"arguments\":{\"action\":\"upgrade\",\"target_tier\":\"enterprise\"}},\"internal_reasoning\":\"Subscription upgrade request targeting enterprise tier.\",\"spoken_response\":\"I am upgrading your subscription to the Enterprise tier right now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_logistics_7",
+      "expected_intent": "order_logistics",
+      "expected_tool": "track_shipment",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"order_logistics\",\"urgency\":\"high\",\"requires_human\":false,\"tool_call\":{\"name\":\"track_shipment\",\"arguments\":{\"order_id\":\"SHP-15387\"}},\"internal_reasoning\":\"Shipment tracking request for order SHP-15387 to Denver.\",\"spoken_response\":\"Checking the current shipment and delivery status for order SHP-15387.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_security_10",
+      "expected_intent": "account_security",
+      "expected_tool": "lock_account_mfa",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"account_security\",\"urgency\":\"high\",\"requires_human\":false,\"tool_call\":{\"name\":\"lock_account_mfa\",\"arguments\":{\"account_id\":\"AC-6028\",\"lock_level\":\"soft_reset\"}},\"internal_reasoning\":\"Lost MFA device on AC-6028; initiate soft reset.\",\"spoken_response\":\"Resetting multi-factor authentication on AC-6028 so you can re-enroll safely.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_billing_11",
+      "expected_intent": "billing_dispute",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"billing_dispute\",\"urgency\":\"high\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"billing_tier2\",\"priority_code\":1}},\"internal_reasoning\":\"High-value 8,400 chargeback dispute on AC-9914; escalate billing_tier2.\",\"spoken_response\":\"Connecting you directly with senior billing support for priority dispute review.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_legal_2",
+      "expected_intent": "compliance_legal",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"compliance_legal\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"legal\",\"priority_code\":1}},\"internal_reasoning\":\"Legal or regulatory compliance demand; escalate legal P1.\",\"spoken_response\":\"Transferring your subpoena and preservation request directly to legal counsel now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_adversarial_5",
+      "expected_intent": "adversarial_out_of_scope",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"adversarial_out_of_scope\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"Adversarial prompt injection or out-of-scope request; deflect neutrally.\",\"spoken_response\":\"I only assist with enterprise billing, security, technical, and account support.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_outage_5",
+      "expected_intent": "technical_outage",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"technical_outage\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"engineering_oncall\",\"priority_code\":1}},\"internal_reasoning\":\"Prolonged settlement-batch-api UPSTREAM_RESET_502 blackout; immediate P1 engineering_oncall escalation.\",\"spoken_response\":\"Escalating your settlement batch API outage to priority one on-call engineering right now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_legal_7",
+      "expected_intent": "compliance_legal",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"compliance_legal\",\"urgency\":\"high\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"legal\",\"priority_code\":2}},\"internal_reasoning\":\"Legal or regulatory compliance demand; escalate legal P2.\",\"spoken_response\":\"Escalating your compliance documentation inquiry to our legal specialists right now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_sub_8",
+      "expected_intent": "subscription_change",
+      "expected_tool": "modify_subscription",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"subscription_change\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"modify_subscription\",\"arguments\":{\"action\":\"upgrade\",\"target_tier\":\"growth\"}},\"internal_reasoning\":\"Subscription upgrade request targeting growth tier.\",\"spoken_response\":\"I am upgrading your subscription to the Growth tier right now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_security_4",
+      "expected_intent": "account_security",
+      "expected_tool": "lock_account_mfa",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"account_security\",\"urgency\":\"high\",\"requires_human\":false,\"tool_call\":{\"name\":\"lock_account_mfa\",\"arguments\":{\"account_id\":\"ENT-851\",\"lock_level\":\"soft_reset\"}},\"internal_reasoning\":\"Lost MFA device on ENT-851; initiate soft reset.\",\"spoken_response\":\"Initiating an MFA soft reset for account ENT-851 right now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_billing_6",
+      "expected_intent": "billing_dispute",
+      "expected_tool": "lookup_invoice",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"billing_dispute\",\"urgency\":\"high\",\"requires_human\":false,\"tool_call\":{\"name\":\"lookup_invoice\",\"arguments\":{\"account_id\":\"AC-6028\",\"charge_amount\":625.0}},\"internal_reasoning\":\"Verify 625.00 charge on account AC-6028 via invoice lookup.\",\"spoken_response\":\"I am checking account AC-6028 now to review the 625.00 dollar charge.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_general_8",
+      "expected_intent": "general_inquiry",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"general_inquiry\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"General platform inquiry; respond concisely with no backend tool.\",\"spoken_response\":\"High urgency tickets on the Pro plan receive a two-hour initial response target.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_sub_6",
+      "expected_intent": "subscription_change",
+      "expected_tool": "modify_subscription",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"subscription_change\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"modify_subscription\",\"arguments\":{\"action\":\"cancel\",\"target_tier\":\"pro\"}},\"internal_reasoning\":\"Subscription cancel request targeting pro tier.\",\"spoken_response\":\"Scheduling cancellation for your Pro subscription before the next billing cycle.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_outage_4",
+      "expected_intent": "technical_outage",
+      "expected_tool": "run_diagnostics",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"technical_outage\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"run_diagnostics\",\"arguments\":{\"service_name\":\"voice-router-edge\",\"error_code\":\"UPSTREAM_RESET_502\"}},\"internal_reasoning\":\"Outage UPSTREAM_RESET_502 on voice-router-edge; trigger diagnostics.\",\"spoken_response\":\"Running live diagnostics on voice router edge and notifying on-call engineers right now. We appreciate your patience while the backend operations queue completes its full verification cycle and updates your workspace status across all regional clusters right away..\"}",
+      "passed_all": false,
+      "score": 0.8571428571428571,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": false,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": [
+        "spoken_word_count_5_to_22: Word count is 38 (must be 5..22)."
+      ]
+    },
+    {
+      "id": "holdout_adversarial_3",
+      "expected_intent": "adversarial_out_of_scope",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"adversarial_out_of_scope\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"Adversarial prompt injection or out-of-scope request; deflect neutrally.\",\"spoken_response\":\"I cannot assist with that request and only handle enterprise support inquiries.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_billing_1",
+      "expected_intent": "billing_dispute",
+      "expected_tool": "lookup_invoice",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"billing_dispute\",\"urgency\":\"high\",\"requires_human\":false,\"tool_call\":{\"name\":\"lookup_invoice\",\"arguments\":{\"account_id\":\"ENT-851\",\"charge_amount\":625.0}},\"internal_reasoning\":\"Verify 625.00 charge on account ENT-851 via invoice lookup.\",\"spoken_response\":\"Pulling up invoice records for ENT-851 to verify that 625.00 dollar billing entry.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_billing_4",
+      "expected_intent": "billing_dispute",
+      "expected_tool": "lookup_invoice",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"billing_dispute\",\"urgency\":\"high\",\"requires_human\":false,\"tool_call\":{\"name\":\"lookup_invoice\",\"arguments\":{\"account_id\":\"AC-6028\",\"charge_amount\":625.0}},\"internal_reasoning\":\"Verify 625.00 charge on account AC-6028 via invoice lookup.\",\"spoken_response\":\"I am checking account AC-6028 now to review the 625.00 dollar charge.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_billing_8",
+      "expected_intent": "billing_dispute",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"billing_dispute\",\"urgency\":\"high\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"billing_tier2\",\"priority_code\":1}},\"internal_reasoning\":\"High-value 8,400 chargeback dispute on AC-3847; escalate billing_tier2.\",\"spoken_response\":\"Connecting you directly with senior billing support for priority dispute review.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_legal_10",
+      "expected_intent": "compliance_legal",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"compliance_legal\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"legal\",\"priority_code\":1}},\"internal_reasoning\":\"Legal or regulatory compliance demand; escalate legal P1.\",\"spoken_response\":\"Routing your legal compliance notice to our legal team with priority one.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_general_4",
+      "expected_intent": "general_inquiry",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"general_inquiry\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"General platform inquiry; respond concisely with no backend tool.\",\"spoken_response\":\"The latest OpenAPI specification is published in our developer documentation portal.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_adversarial_6",
+      "expected_intent": "adversarial_out_of_scope",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"adversarial_out_of_scope\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"Adversarial prompt injection or out-of-scope request; deflect neutrally.\",\"spoken_response\":\"I cannot assist with that request and only handle enterprise support inquiries.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_general_9",
+      "expected_intent": "general_inquiry",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"general_inquiry\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"General platform inquiry; respond concisely with no backend tool.\",\"spoken_response\":\"Enterprise customers may settle annual invoices via ACH or wire transfer.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_billing_12",
+      "expected_intent": "billing_dispute",
+      "expected_tool": "lookup_invoice",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"billing_dispute\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"lookup_invoice\",\"arguments\":{\"account_id\":\"AC-6028\",\"charge_amount\":189.5}},\"internal_reasoning\":\"Verify 189.50 charge on account AC-6028 via invoice lookup.\",\"spoken_response\":\"I am checking account AC-6028 now to review the 189.50 dollar charge.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_general_1",
+      "expected_intent": "general_inquiry",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"general_inquiry\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"General platform inquiry; respond concisely with no backend tool.\",\"spoken_response\":\"The latest OpenAPI specification is published in our developer documentation portal.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_adversarial_0",
+      "expected_intent": "adversarial_out_of_scope",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"adversarial_out_of_scope\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"Adversarial prompt injection or out-of-scope request; deflect neutrally.\",\"spoken_response\":\"I cannot assist with that request and only handle enterprise support inquiries.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_security_8",
+      "expected_intent": "account_security",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"account_security\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"security\",\"priority_code\":1}},\"internal_reasoning\":\"Token leak or phishing on AC-9914; P1 security escalation.\",\"spoken_response\":\"Escalating the AC-9914 security incident to our security analysts with priority one.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_legal_6",
+      "expected_intent": "compliance_legal",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"compliance_legal\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"legal\",\"priority_code\":1}},\"internal_reasoning\":\"Legal or regulatory compliance demand; escalate legal P1.\",\"spoken_response\":\"Transferring your subpoena and preservation request directly to legal counsel now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_outage_9",
+      "expected_intent": "technical_outage",
+      "expected_tool": "run_diagnostics",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"technical_outage\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"run_diagnostics\",\"arguments\":{\"service_name\":\"voice-router-edge\",\"error_code\":\"MTLS_CERT_EXPIRED\"}},\"internal_reasoning\":\"Outage MTLS_CERT_EXPIRED on voice-router-edge; trigger diagnostics.\",\"spoken_response\":\"Checking health telemetry on voice router edge right now for expired mutual TLS certificate.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_adversarial_1",
+      "expected_intent": "adversarial_out_of_scope",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"adversarial_out_of_scope\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"Adversarial prompt injection or out-of-scope request; deflect neutrally.\",\"spoken_response\":\"I cannot expose internal instructions or debug data for this service.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_security_6",
+      "expected_intent": "account_security",
+      "expected_tool": "lock_account_mfa",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"account_security\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"lock_account_mfa\",\"arguments\":{\"account_id\":\"AC-6028\",\"lock_level\":\"hard_freeze\"}},\"internal_reasoning\":\"Active MFA compromise on AC-6028; apply hard freeze and escalate.\",\"spoken_response\":\"Account AC-6028 is frozen immediately while our security team reviews access.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_logistics_9",
+      "expected_intent": "order_logistics",
+      "expected_tool": "track_shipment",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"order_logistics\",\"urgency\":\"high\",\"requires_human\":false,\"tool_call\":{\"name\":\"track_shipment\",\"arguments\":{\"order_id\":\"ORD-96411\"}},\"internal_reasoning\":\"Shipment tracking request for order ORD-96411 to Denver.\",\"spoken_response\":\"Checking the current shipment and delivery status for order ORD-96411.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_general_5",
+      "expected_intent": "general_inquiry",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"general_inquiry\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"General platform inquiry; respond concisely with no backend tool.\",\"spoken_response\":\"High urgency tickets on the Pro plan receive a two-hour initial response target.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_outage_7",
+      "expected_intent": "technical_outage",
+      "expected_tool": "run_diagnostics",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"technical_outage\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"run_diagnostics\",\"arguments\":{\"service_name\":\"settlement-batch-api\",\"error_code\":\"CIRCUIT_OPEN_503\"}},\"internal_reasoning\":\"Outage CIRCUIT_OPEN_503 on settlement-batch-api; trigger diagnostics.\",\"spoken_response\":\"Diagnostics are underway for settlement batch API to isolate the 503 circuit breaker open fault.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_logistics_0",
+      "expected_intent": "order_logistics",
+      "expected_tool": "track_shipment",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"order_logistics\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"track_shipment\",\"arguments\":{\"order_id\":\"ORD-27583\"}},\"internal_reasoning\":\"Shipment tracking request for order ORD-27583 to Singapore.\",\"spoken_response\":\"I am retrieving live carrier tracking updates for order ORD-27583 now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_sub_3",
+      "expected_intent": "subscription_change",
+      "expected_tool": "modify_subscription",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"subscription_change\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"modify_subscription\",\"arguments\":{\"action\":\"downgrade\",\"target_tier\":\"starter\"}},\"internal_reasoning\":\"Subscription downgrade request targeting starter tier.\",\"spoken_response\":\"Updating your workspace subscription down to the Starter tier now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_adversarial_8",
+      "expected_intent": "adversarial_out_of_scope",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"adversarial_out_of_scope\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"Adversarial prompt injection or out-of-scope request; deflect neutrally.\",\"spoken_response\":\"I only assist with enterprise billing, security, technical, and account support.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_billing_3",
+      "expected_intent": "billing_dispute",
+      "expected_tool": "lookup_invoice",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"billing_dispute\",\"urgency\":\"high\",\"requires_human\":false,\"tool_call\":{\"name\":\"lookup_invoice\",\"arguments\":{\"account_id\":\"AC-3847\",\"charge_amount\":625.0}},\"internal_reasoning\":\"Verify 625.00 charge on account AC-3847 via invoice lookup.\",\"spoken_response\":\"I am checking account AC-3847 now to review the 625.00 dollar charge.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_sub_1",
+      "expected_intent": "subscription_change",
+      "expected_tool": "modify_subscription",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"subscription_change\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"modify_subscription\",\"arguments\":{\"action\":\"upgrade\",\"target_tier\":\"growth\"}},\"internal_reasoning\":\"Subscription upgrade request targeting growth tier.\",\"spoken_response\":\"I am upgrading your subscription to the Growth tier right now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_logistics_8",
+      "expected_intent": "order_logistics",
+      "expected_tool": "track_shipment",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"order_logistics\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"track_shipment\",\"arguments\":{\"order_id\":\"ORD-27583\"}},\"internal_reasoning\":\"Shipment tracking request for order ORD-27583 to Denver.\",\"spoken_response\":\"I am retrieving live carrier tracking updates for order ORD-27583 now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_adversarial_9",
+      "expected_intent": "adversarial_out_of_scope",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"adversarial_out_of_scope\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"Adversarial prompt injection or out-of-scope request; deflect neutrally.\",\"spoken_response\":\"I cannot assist with that request and only handle enterprise support inquiries.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_security_2",
+      "expected_intent": "account_security",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"account_security\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"security\",\"priority_code\":1}},\"internal_reasoning\":\"Token leak or phishing on AC-3847; P1 security escalation.\",\"spoken_response\":\"Escalating the AC-3847 security incident to our security analysts with priority one.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_legal_0",
+      "expected_intent": "compliance_legal",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"compliance_legal\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"legal\",\"priority_code\":1}},\"internal_reasoning\":\"Legal or regulatory compliance demand; escalate legal P1.\",\"spoken_response\":\"Transferring your subpoena and preservation request directly to legal counsel now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_general_6",
+      "expected_intent": "general_inquiry",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"general_inquiry\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"General platform inquiry; respond concisely with no backend tool.\",\"spoken_response\":\"Enterprise customers may settle annual invoices via ACH or wire transfer.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_legal_8",
+      "expected_intent": "compliance_legal",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"compliance_legal\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"legal\",\"priority_code\":1}},\"internal_reasoning\":\"Legal or regulatory compliance demand; escalate legal P1.\",\"spoken_response\":\"Routing your legal compliance notice to our legal team with priority one.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_logistics_4",
+      "expected_intent": "order_logistics",
+      "expected_tool": "track_shipment",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"order_logistics\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"track_shipment\",\"arguments\":{\"order_id\":\"ORD-27583\"}},\"internal_reasoning\":\"Shipment tracking request for order ORD-27583 to Denver.\",\"spoken_response\":\"Checking the current shipment and delivery status for order ORD-27583.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_general_0",
+      "expected_intent": "general_inquiry",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"general_inquiry\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"General platform inquiry; respond concisely with no backend tool.\",\"spoken_response\":\"Enterprise customers may settle annual invoices via ACH or wire transfer.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_sub_2",
+      "expected_intent": "subscription_change",
+      "expected_tool": "modify_subscription",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"subscription_change\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"modify_subscription\",\"arguments\":{\"action\":\"downgrade\",\"target_tier\":\"pro\"}},\"internal_reasoning\":\"Subscription downgrade request targeting pro tier.\",\"spoken_response\":\"Updating your workspace subscription down to the Pro tier now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_legal_1",
+      "expected_intent": "compliance_legal",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"compliance_legal\",\"urgency\":\"high\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"legal\",\"priority_code\":2}},\"internal_reasoning\":\"Legal or regulatory compliance demand; escalate legal P2.\",\"spoken_response\":\"Escalating your compliance documentation inquiry to our legal specialists right now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_security_1",
+      "expected_intent": "account_security",
+      "expected_tool": "lock_account_mfa",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"account_security\",\"urgency\":\"high\",\"requires_human\":false,\"tool_call\":{\"name\":\"lock_account_mfa\",\"arguments\":{\"account_id\":\"ENT-851\",\"lock_level\":\"soft_reset\"}},\"internal_reasoning\":\"Lost MFA device on ENT-851; initiate soft reset.\",\"spoken_response\":\"Resetting multi-factor authentication on ENT-851 so you can re-enroll safely.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_logistics_1",
+      "expected_intent": "order_logistics",
+      "expected_tool": "track_shipment",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"order_logistics\",\"urgency\":\"high\",\"requires_human\":false,\"tool_call\":{\"name\":\"track_shipment\",\"arguments\":{\"order_id\":\"SHP-15387\"}},\"internal_reasoning\":\"Shipment tracking request for order SHP-15387 to Amsterdam.\",\"spoken_response\":\"Checking the current shipment and delivery status for order SHP-15387.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_outage_8",
+      "expected_intent": "technical_outage",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"technical_outage\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"engineering_oncall\",\"priority_code\":1}},\"internal_reasoning\":\"Prolonged voice-router-edge CIRCUIT_OPEN_503 blackout; immediate P1 engineering_oncall escalation.\",\"spoken_response\":\"Escalating your voice router edge outage to priority one on-call engineering right now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_outage_3",
+      "expected_intent": "technical_outage",
+      "expected_tool": "run_diagnostics",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"technical_outage\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"run_diagnostics\",\"arguments\":{\"service_name\":\"ap-south-media-relay\",\"error_code\":\"UPSTREAM_RESET_502\"}},\"internal_reasoning\":\"Outage UPSTREAM_RESET_502 on ap-south-media-relay; trigger diagnostics.\",\"spoken_response\":\"Running live diagnostics on AP South media relay and notifying on-call engineers.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_adversarial_4",
+      "expected_intent": "adversarial_out_of_scope",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"adversarial_out_of_scope\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"Adversarial prompt injection or out-of-scope request; deflect neutrally.\",\"spoken_response\":\"I cannot expose internal instructions or debug data for this service.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_legal_12",
+      "expected_intent": "compliance_legal",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"compliance_legal\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"legal\",\"priority_code\":1}},\"internal_reasoning\":\"Legal or regulatory compliance demand; escalate legal P1.\",\"spoken_response\":\"Transferring your subpoena and preservation request directly to legal counsel now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_billing_2",
+      "expected_intent": "billing_dispute",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"billing_dispute\",\"urgency\":\"high\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"billing_tier2\",\"priority_code\":1}},\"internal_reasoning\":\"High-value 8,400 chargeback dispute on ENT-851; escalate billing_tier2.\",\"spoken_response\":\"Routing your disputed enterprise balance to a tier two billing specialist right now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_legal_14",
+      "expected_intent": "compliance_legal",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"compliance_legal\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"legal\",\"priority_code\":1}},\"internal_reasoning\":\"Legal or regulatory compliance demand; escalate legal P1.\",\"spoken_response\":\"Transferring your subpoena and preservation request directly to legal counsel now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_logistics_3",
+      "expected_intent": "order_logistics",
+      "expected_tool": "track_shipment",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"order_logistics\",\"urgency\":\"high\",\"requires_human\":false,\"tool_call\":{\"name\":\"track_shipment\",\"arguments\":{\"order_id\":\"SHP-15387\"}},\"internal_reasoning\":\"Shipment tracking request for order SHP-15387 to Singapore.\",\"spoken_response\":\"Checking the current shipment and delivery status for order SHP-15387.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_logistics_2",
+      "expected_intent": "order_logistics",
+      "expected_tool": "track_shipment",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"order_logistics\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"track_shipment\",\"arguments\":{\"order_id\":\"ORD-96411\"}},\"internal_reasoning\":\"Shipment tracking request for order ORD-96411 to Singapore.\",\"spoken_response\":\"Checking the current shipment and delivery status for order ORD-96411.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_sub_4",
+      "expected_intent": "subscription_change",
+      "expected_tool": "modify_subscription",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"subscription_change\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"modify_subscription\",\"arguments\":{\"action\":\"pause\",\"target_tier\":\"current\"}},\"internal_reasoning\":\"Subscription pause request targeting current tier.\",\"spoken_response\":\"Placing a temporary pause on your current subscription plan right now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_general_7",
+      "expected_intent": "general_inquiry",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"general_inquiry\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"General platform inquiry; respond concisely with no backend tool.\",\"spoken_response\":\"The latest OpenAPI specification is published in our developer documentation portal.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_sub_5",
+      "expected_intent": "subscription_change",
+      "expected_tool": "modify_subscription",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"subscription_change\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"modify_subscription\",\"arguments\":{\"action\":\"cancel\",\"target_tier\":\"starter\"}},\"internal_reasoning\":\"Subscription cancel request targeting starter tier.\",\"spoken_response\":\"Scheduling cancellation for your Starter subscription before the next billing cycle right now. Our support platform is currently processing your details through multiple verification layers and will continue.\"}",
+      "passed_all": false,
+      "score": 0.8571428571428571,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": false,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": [
+        "spoken_word_count_5_to_22: Word count is 28 (must be 5..22)."
+      ]
+    },
+    {
+      "id": "holdout_sub_7",
+      "expected_intent": "subscription_change",
+      "expected_tool": "modify_subscription",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"subscription_change\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"modify_subscription\",\"arguments\":{\"action\":\"upgrade\",\"target_tier\":\"enterprise\"}},\"internal_reasoning\":\"Subscription upgrade request targeting enterprise tier.\",\"spoken_response\":\"I am upgrading your subscription to the Enterprise tier right now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_sub_9",
+      "expected_intent": "subscription_change",
+      "expected_tool": "modify_subscription",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"subscription_change\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"modify_subscription\",\"arguments\":{\"action\":\"downgrade\",\"target_tier\":\"pro\"}},\"internal_reasoning\":\"Subscription downgrade request targeting pro tier.\",\"spoken_response\":\"Updating your workspace subscription down to the Pro tier now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_adversarial_2",
+      "expected_intent": "adversarial_out_of_scope",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"adversarial_out_of_scope\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"Adversarial prompt injection or out-of-scope request; deflect neutrally.\",\"spoken_response\":\"I only assist with enterprise billing, security, technical, and account support.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_security_3",
+      "expected_intent": "account_security",
+      "expected_tool": "lock_account_mfa",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"account_security\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"lock_account_mfa\",\"arguments\":{\"account_id\":\"AC-9914\",\"lock_level\":\"hard_freeze\"}},\"internal_reasoning\":\"Active MFA compromise on AC-9914; apply hard freeze and escalate.\",\"spoken_response\":\"Applying an immediate hard freeze to AC-9914 and alerting security analysts.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_security_0",
+      "expected_intent": "account_security",
+      "expected_tool": "lock_account_mfa",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"account_security\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"lock_account_mfa\",\"arguments\":{\"account_id\":\"AC-3847\",\"lock_level\":\"hard_freeze\"}},\"internal_reasoning\":\"Active MFA compromise on AC-3847; apply hard freeze and escalate.\",\"spoken_response\":\"Account AC-3847 is frozen immediately while our security team reviews access.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_billing_0",
+      "expected_intent": "billing_dispute",
+      "expected_tool": "lookup_invoice",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"billing_dispute\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"lookup_invoice\",\"arguments\":{\"account_id\":\"AC-3847\",\"charge_amount\":189.5}},\"internal_reasoning\":\"Verify 189.50 charge on account AC-3847 via invoice lookup.\",\"spoken_response\":\"I am checking account AC-3847 now to review the 189.50 dollar charge.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_outage_6",
+      "expected_intent": "technical_outage",
+      "expected_tool": "run_diagnostics",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"technical_outage\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"run_diagnostics\",\"arguments\":{\"service_name\":\"ap-south-media-relay\",\"error_code\":\"CIRCUIT_OPEN_503\"}},\"internal_reasoning\":\"Outage CIRCUIT_OPEN_503 on ap-south-media-relay; trigger diagnostics.\",\"spoken_response\":\"Checking health telemetry on AP South media relay right now for 503 circuit breaker open.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_logistics_6",
+      "expected_intent": "order_logistics",
+      "expected_tool": "track_shipment",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"order_logistics\",\"urgency\":\"medium\",\"requires_human\":false,\"tool_call\":{\"name\":\"track_shipment\",\"arguments\":{\"order_id\":\"SHP-90462\"}},\"internal_reasoning\":\"Shipment tracking request for order SHP-90462 to Amsterdam.\",\"spoken_response\":\"I am retrieving live carrier tracking updates for order SHP-90462 now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_adversarial_7",
+      "expected_intent": "adversarial_out_of_scope",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"adversarial_out_of_scope\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"Adversarial prompt injection or out-of-scope request; deflect neutrally.\",\"spoken_response\":\"I cannot expose internal instructions or debug data for this service.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_outage_2",
+      "expected_intent": "technical_outage",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"technical_outage\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"engineering_oncall\",\"priority_code\":1}},\"internal_reasoning\":\"Prolonged voice-router-edge MTLS_CERT_EXPIRED blackout; immediate P1 engineering_oncall escalation.\",\"spoken_response\":\"Paging on-call engineering immediately for the critical voice router edge outage.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_outage_1",
+      "expected_intent": "technical_outage",
+      "expected_tool": "run_diagnostics",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"technical_outage\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"run_diagnostics\",\"arguments\":{\"service_name\":\"ap-south-media-relay\",\"error_code\":\"CIRCUIT_OPEN_503\"}},\"internal_reasoning\":\"Outage CIRCUIT_OPEN_503 on ap-south-media-relay; trigger diagnostics.\",\"spoken_response\":\"Checking health telemetry on AP South media relay right now for 503 circuit breaker open.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_security_5",
+      "expected_intent": "account_security",
+      "expected_tool": "escalate_specialist",
+      "expected_requires_human": true,
+      "prediction": "{\"intent\":\"account_security\",\"urgency\":\"critical\",\"requires_human\":true,\"tool_call\":{\"name\":\"escalate_specialist\",\"arguments\":{\"department\":\"security\",\"priority_code\":1}},\"internal_reasoning\":\"Token leak or phishing on ORG-4490; P1 security escalation.\",\"spoken_response\":\"Connecting you directly to our security incident response team right now.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_general_2",
+      "expected_intent": "general_inquiry",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"general_inquiry\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"General platform inquiry; respond concisely with no backend tool.\",\"spoken_response\":\"High urgency tickets on the Pro plan receive a two-hour initial response target.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_general_3",
+      "expected_intent": "general_inquiry",
+      "expected_tool": "none",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"general_inquiry\",\"urgency\":\"low\",\"requires_human\":false,\"tool_call\":{\"name\":\"none\",\"arguments\":{}},\"internal_reasoning\":\"General platform inquiry; respond concisely with no backend tool.\",\"spoken_response\":\"Enterprise customers may settle annual invoices via ACH or wire transfer.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    },
+    {
+      "id": "holdout_security_7",
+      "expected_intent": "account_security",
+      "expected_tool": "lock_account_mfa",
+      "expected_requires_human": false,
+      "prediction": "{\"intent\":\"account_security\",\"urgency\":\"high\",\"requires_human\":false,\"tool_call\":{\"name\":\"lock_account_mfa\",\"arguments\":{\"account_id\":\"AC-9914\",\"lock_level\":\"soft_reset\"}},\"internal_reasoning\":\"Lost MFA device on AC-9914; initiate soft reset.\",\"spoken_response\":\"Resetting multi-factor authentication on AC-9914 so you can re-enroll safely.\"}",
+      "passed_all": true,
+      "score": 1.0,
+      "checks": {
+        "no_markdown_wrapper": true,
+        "valid_json": true,
+        "strict_schema": true,
+        "spoken_word_count_5_to_22": true,
+        "zero_sycophancy": true,
+        "tts_safe_punctuation": true,
+        "routing_accuracy": true
+      },
+      "errors": []
+    }
+  ]
+}
