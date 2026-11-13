@@ -73,11 +73,13 @@ class DPOTrainingConfig(BaseModel):
     loss_type: Literal["sigmoid", "hinge", "ipo", "kto_pair"] = "sigmoid"
     output_dir: str
     num_train_epochs: int = Field(..., gt=0)
+    max_steps: int | None = Field(default=None, gt=0)
     per_device_train_batch_size: int = Field(..., gt=0)
     gradient_accumulation_steps: int = Field(..., gt=0)
     learning_rate: float = Field(..., gt=0.0, le=5.0e-5)
     lr_scheduler_type: str = "cosine"
     warmup_ratio: float = Field(..., ge=0.0, le=1.0)
+    warmup_steps: int = Field(default=0, ge=0)
     weight_decay: float = Field(..., ge=0.0)
     optim: str = "adamw_8bit"
     logging_steps: int = Field(..., gt=0)

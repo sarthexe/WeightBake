@@ -23,6 +23,7 @@ def build_vllm_command(
     gpu_memory_utilization: float = 0.85,
     dtype: str = "bfloat16",
     disable_prefix_caching: bool = False,
+    enforce_eager: bool = False,
 ) -> list[str]:
     """Construct reproducible python -m vllm.entrypoints.openai.api_server command."""
     if not (0.1 <= gpu_memory_utilization <= 0.99):
@@ -51,6 +52,8 @@ def build_vllm_command(
         "--dtype",
         dtype,
     ]
+    if enforce_eager:
+        cmd.append("--enforce-eager")
     if disable_prefix_caching:
         cmd.append("--no-enable-prefix-caching")
     return cmd
@@ -74,6 +77,7 @@ def main() -> int:
     parser.add_argument("--gpu-memory-utilization", type=float, default=0.85)
     parser.add_argument("--dtype", default="bfloat16")
     parser.add_argument("--disable-prefix-caching", action="store_true")
+    parser.add_argument("--enforce-eager", action="store_true")
     parser.add_argument(
         "--print-cmd",
         "--dry-run",
@@ -92,6 +96,7 @@ def main() -> int:
         gpu_memory_utilization=args.gpu_memory_utilization,
         dtype=args.dtype,
         disable_prefix_caching=args.disable_prefix_caching,
+        enforce_eager=args.enforce_eager,
     )
     health_url = get_healthcheck_url(host=args.host, port=args.port)
     formatted_cmd = " ".join(shlex.quote(part) for part in cmd)

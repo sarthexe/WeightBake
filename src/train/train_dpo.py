@@ -100,7 +100,12 @@ def run_dpo_dry_run(
         cfg.dpo.per_device_train_batch_size * cfg.dpo.gradient_accumulation_steps
     )
     computed_steps = math.ceil(len(train_ds) / effective_batch) * cfg.dpo.num_train_epochs
-    total_steps = max_steps if max_steps is not None else computed_steps
+    if max_steps is not None:
+        total_steps = max_steps
+    elif cfg.dpo.max_steps is not None:
+        total_steps = cfg.dpo.max_steps
+    else:
+        total_steps = computed_steps
 
     summary = DPODryRunSummary(
         train_samples=len(train_ds),
@@ -124,7 +129,7 @@ def run_dpo_dry_run(
     table.add_row("SFT Source Checkpoint", cfg.sft_checkpoint_dir)
     table.add_row("DPO Output Directory", cfg.dpo.output_dir)
     table.add_row("DPO Beta / Loss Type", f"beta={cfg.dpo.beta} / {cfg.dpo.loss_type}")
-    table.add_row("Learning Rate / Schedule", f"{cfg.dpo.learning_rate:.1e} ({cfg.dpo.lr_scheduler_type}, warmup={cfg.dpo.warmup_ratio})")
+    table.add_row("Learning Rate / Schedule", f"{cfg.dpo.learning_rate:.1e} ({cfg.dpo.lr_scheduler_type}, warmup_steps={cfg.dpo.warmup_steps}, warmup_ratio={cfg.dpo.warmup_ratio})")
     table.add_row("Dataset Split (Train / Val)", f"{summary.train_samples} / {summary.val_samples} (100% Minimal Context)")
     table.add_row("Prompt Tokens (Mean / Max)", f"{summary.mean_prompt_tokens:.1f} / {summary.max_prompt_tokens} (limit {cfg.max_prompt_length})")
     table.add_row("Chosen / Rejected Mean Tokens", f"{summary.mean_chosen_tokens:.1f} / {summary.mean_rejected_tokens:.1f} (max total {summary.max_total_tokens})")
@@ -160,6 +165,12 @@ def run_dpo_training(
         output_dir = PROJECT_ROOT / output_dir
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    resolved_max_steps = (
+        max_steps
+        if max_steps is not None
+        else (cfg.dpo.max_steps if cfg.dpo.max_steps is not None else -1)
+    )
+
     if backend == "unsloth":
         from unsloth import FastLanguageModel, PatchDPOTrainer
 
@@ -184,13 +195,14 @@ def run_dpo_training(
             learning_rate=cfg.dpo.learning_rate,
             lr_scheduler_type=cfg.dpo.lr_scheduler_type,
             warmup_ratio=cfg.dpo.warmup_ratio,
+            warmup_steps=cfg.dpo.warmup_steps,
             weight_decay=cfg.dpo.weight_decay,
             optim=cfg.dpo.optim,
             logging_steps=cfg.dpo.logging_steps,
             save_strategy=cfg.dpo.save_strategy,
             eval_strategy="epoch",
             seed=cfg.dpo.seed,
-            max_steps=max_steps if max_steps is not None else -1,
+            max_steps=resolved_max_steps,
             report_to="none",
         )
         trainer = DPOTrainer(
@@ -228,12 +240,13 @@ def run_dpo_training(
             learning_rate=cfg.dpo.learning_rate,
             lr_scheduler_type=cfg.dpo.lr_scheduler_type,
             warmup_ratio=cfg.dpo.warmup_ratio,
+            warmup_steps=cfg.dpo.warmup_steps,
             weight_decay=cfg.dpo.weight_decay,
             logging_steps=cfg.dpo.logging_steps,
             save_strategy=cfg.dpo.save_strategy,
             eval_strategy="epoch",
             seed=cfg.dpo.seed,
-            max_steps=max_steps if max_steps is not None else -1,
+            max_steps=resolved_max_steps,
             report_to="none",
         )
         trainer = DPOTrainer(

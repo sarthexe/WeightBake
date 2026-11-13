@@ -1,0 +1,118 @@
+{
+  "hardware": "NVIDIA Tesla T4 (16GB VRAM)",
+  "vllm_version": "0.33.0",
+  "vllm_flags": "--dtype half --enforce-eager --no-enable-prefix-caching",
+  "base_model": "Qwen/Qwen2.5-3B-Instruct",
+  "distilled_model": "checkpoints/weightbake-3b-merged",
+  "concurrency_levels": [1, 8, 16, 32],
+  "tiers": [
+    {
+      "concurrency": 1,
+      "baseline_bloated": {
+        "variant": "baseline_bloated",
+        "concurrency": 1,
+        "prefill_system_tokens": 1922,
+        "p50_ttft_ms": 1452.85,
+        "p95_ttft_ms": 1473.43,
+        "mean_itl_ms": 46.23,
+        "p95_e2el_ms": 6306.62,
+        "rps": 0.20
+      },
+      "weightbake_minimal": {
+        "variant": "weightbake_minimal",
+        "concurrency": 1,
+        "prefill_system_tokens": 10,
+        "p50_ttft_ms": 92.14,
+        "p95_ttft_ms": 121.63,
+        "mean_itl_ms": 46.01,
+        "p95_e2el_ms": 4772.47,
+        "rps": 0.29
+      },
+      "p50_ttft_speedup_x": 15.77,
+      "p95_ttft_speedup_x": 12.11,
+      "p50_ttft_reduction_pct": 93.66,
+      "rps_speedup_x": 1.45
+    },
+    {
+      "concurrency": 8,
+      "baseline_bloated": {
+        "variant": "baseline_bloated",
+        "concurrency": 8,
+        "prefill_system_tokens": 1922,
+        "p50_ttft_ms": 1559.73,
+        "p95_ttft_ms": 9413.11,
+        "mean_itl_ms": 159.85,
+        "p95_e2el_ms": 23761.75,
+        "rps": 0.51
+      },
+      "weightbake_minimal": {
+        "variant": "weightbake_minimal",
+        "concurrency": 8,
+        "prefill_system_tokens": 10,
+        "p50_ttft_ms": 139.75,
+        "p95_ttft_ms": 188.96,
+        "mean_itl_ms": 47.56,
+        "p95_e2el_ms": 4918.91,
+        "rps": 1.95
+      },
+      "p50_ttft_speedup_x": 11.16,
+      "p95_ttft_speedup_x": 49.82,
+      "p50_ttft_reduction_pct": 91.04,
+      "rps_speedup_x": 3.82
+    },
+    {
+      "concurrency": 16,
+      "baseline_bloated": {
+        "variant": "baseline_bloated",
+        "concurrency": 16,
+        "prefill_system_tokens": 1922,
+        "p50_ttft_ms": 2986.33,
+        "p95_ttft_ms": 21110.16,
+        "mean_itl_ms": 257.99,
+        "p95_e2el_ms": 46963.07,
+        "rps": 0.57
+      },
+      "weightbake_minimal": {
+        "variant": "weightbake_minimal",
+        "concurrency": 16,
+        "prefill_system_tokens": 10,
+        "p50_ttft_ms": 240.72,
+        "p95_ttft_ms": 321.37,
+        "mean_itl_ms": 61.04,
+        "p95_e2el_ms": 6299.50,
+        "rps": 2.84
+      },
+      "p50_ttft_speedup_x": 12.41,
+      "p95_ttft_speedup_x": 65.69,
+      "p50_ttft_reduction_pct": 91.94,
+      "rps_speedup_x": 4.98
+    },
+    {
+      "concurrency": 32,
+      "baseline_bloated": {
+        "variant": "baseline_bloated",
+        "concurrency": 32,
+        "prefill_system_tokens": 1922,
+        "p50_ttft_ms": 24118.82,
+        "p95_ttft_ms": 44472.91,
+        "mean_itl_ms": 359.87,
+        "p95_e2el_ms": 53300.85,
+        "rps": 0.60
+      },
+      "weightbake_minimal": {
+        "variant": "weightbake_minimal",
+        "concurrency": 32,
+        "prefill_system_tokens": 10,
+        "p50_ttft_ms": 561.16,
+        "p95_ttft_ms": 567.62,
+        "mean_itl_ms": 50.66,
+        "p95_e2el_ms": 5457.46,
+        "rps": 5.86
+      },
+      "p50_ttft_speedup_x": 42.98,
+      "p95_ttft_speedup_x": 78.35,
+      "p50_ttft_reduction_pct": 97.67,
+      "rps_speedup_x": 9.77
+    }
+  ]
+}

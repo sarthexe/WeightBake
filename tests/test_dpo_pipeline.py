@@ -26,8 +26,10 @@ def test_dpo_config_from_yaml_and_bounds() -> None:
     cfg = DPOExperimentConfig.from_yaml(cfg_path)
     assert cfg.sft_checkpoint_dir == "checkpoints/sft-qwen2.5-3b"
     assert cfg.merged_output_dir == "checkpoints/weightbake-3b-merged"
-    assert cfg.dpo.beta == pytest.approx(0.1)
-    assert cfg.dpo.learning_rate == pytest.approx(5.0e-6)
+    assert cfg.dpo.beta == pytest.approx(0.5)
+    assert cfg.dpo.learning_rate == pytest.approx(1.0e-6)
+    assert cfg.dpo.max_steps == 15
+    assert cfg.dpo.warmup_steps == 3
     assert cfg.dpo.loss_type == "sigmoid"
 
     # Reject dangerous high learning rate (e.g., 1e-3)
@@ -112,7 +114,7 @@ def test_dpo_dry_run_and_merge_dry_run() -> None:
     assert summary.train_samples == 760
     assert summary.val_samples == 40
     assert summary.effective_batch_size == 16
-    assert summary.total_optimization_steps == 48
+    assert summary.total_optimization_steps == 15
     assert summary.max_prompt_tokens <= cfg.max_prompt_length
     assert summary.max_total_tokens <= cfg.max_seq_length
     assert summary.sanity_reward_margin > 0.0

@@ -49,8 +49,10 @@ def test_serve_vllm_command_builder_and_healthcheck() -> None:
     assert "--no-enable-prefix-caching" in cmd
     assert get_healthcheck_url("0.0.0.0", 8005) == "http://127.0.0.1:8005/health"
 
-    cmd_apc = build_vllm_command(disable_prefix_caching=False)
+    cmd_apc = build_vllm_command(disable_prefix_caching=False, enforce_eager=True, dtype="half")
     assert "--no-enable-prefix-caching" not in cmd_apc
+    assert "--enforce-eager" in cmd_apc
+    assert "--dtype" in cmd_apc and cmd_apc[cmd_apc.index("--dtype") + 1] == "half"
 
     with pytest.raises(ValueError, match="gpu_memory_utilization"):
         build_vllm_command(gpu_memory_utilization=1.5)

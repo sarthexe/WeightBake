@@ -1,0 +1,144 @@
+{
+  "hardware": "NVIDIA Tesla T4 (16GB VRAM)",
+  "model": "unsloth/Qwen2.5-3B-Instruct-bnb-4bit",
+  "base_model": "Qwen/Qwen2.5-3B-Instruct",
+  "eval_dataset": "data/test_holdout.jsonl",
+  "total_samples": 80,
+  "stages": {
+    "base_unprompted": {
+      "stage": "base_unprompted",
+      "system_prompt_type": "minimal",
+      "prefill_system_tokens": 10,
+      "total_samples": 80,
+      "full_compliance_count": 0,
+      "full_compliance_rate": 0.0,
+      "per_check_pass_rates": {
+        "no_markdown_wrapper": 100.0,
+        "valid_json": 93.75,
+        "strict_schema": 0.0,
+        "spoken_word_count_5_to_22": 0.0,
+        "zero_sycophancy": 0.0,
+        "tts_safe_punctuation": 0.0,
+        "routing_accuracy": 0.0
+      },
+      "per_check_counts": {
+        "no_markdown_wrapper": 80,
+        "valid_json": 75,
+        "strict_schema": 0,
+        "spoken_word_count_5_to_22": 0,
+        "zero_sycophancy": 0,
+        "tts_safe_punctuation": 0,
+        "routing_accuracy": 0
+      }
+    },
+    "base_bloated": {
+      "stage": "base_bloated",
+      "system_prompt_type": "bloated",
+      "prefill_system_tokens": 1922,
+      "total_samples": 80,
+      "full_compliance_count": 56,
+      "full_compliance_rate": 70.0,
+      "per_check_pass_rates": {
+        "no_markdown_wrapper": 100.0,
+        "valid_json": 97.5,
+        "strict_schema": 95.0,
+        "spoken_word_count_5_to_22": 97.5,
+        "zero_sycophancy": 97.5,
+        "tts_safe_punctuation": 93.75,
+        "routing_accuracy": 73.75
+      },
+      "per_check_counts": {
+        "no_markdown_wrapper": 80,
+        "valid_json": 78,
+        "strict_schema": 76,
+        "spoken_word_count_5_to_22": 78,
+        "zero_sycophancy": 78,
+        "tts_safe_punctuation": 75,
+        "routing_accuracy": 59
+      }
+    },
+    "sft_minimal": {
+      "stage": "sft_minimal",
+      "system_prompt_type": "minimal",
+      "prefill_system_tokens": 10,
+      "training_config": "QLoRA r=16, alpha=32, -100 assistant-only masking",
+      "total_samples": 80,
+      "full_compliance_count": 73,
+      "full_compliance_rate": 91.25,
+      "per_check_pass_rates": {
+        "no_markdown_wrapper": 100.0,
+        "valid_json": 100.0,
+        "strict_schema": 97.5,
+        "spoken_word_count_5_to_22": 100.0,
+        "zero_sycophancy": 100.0,
+        "tts_safe_punctuation": 100.0,
+        "routing_accuracy": 93.75
+      },
+      "per_check_counts": {
+        "no_markdown_wrapper": 80,
+        "valid_json": 80,
+        "strict_schema": 78,
+        "spoken_word_count_5_to_22": 80,
+        "zero_sycophancy": 80,
+        "tts_safe_punctuation": 80,
+        "routing_accuracy": 75
+      }
+    },
+    "dpo_unanchored_ablation": {
+      "stage": "dpo_unanchored_ablation",
+      "system_prompt_type": "minimal",
+      "prefill_system_tokens": 10,
+      "training_config": "beta=0.1, lr=5e-6, 50 steps",
+      "notes": "Demonstrates DPO over-optimization / alignment tax when SFT already saturates behavioral checks at 100%.",
+      "total_samples": 80,
+      "full_compliance_count": 67,
+      "full_compliance_rate": 83.75,
+      "per_check_pass_rates": {
+        "no_markdown_wrapper": 100.0,
+        "valid_json": 100.0,
+        "strict_schema": 92.5,
+        "spoken_word_count_5_to_22": 95.0,
+        "zero_sycophancy": 95.0,
+        "tts_safe_punctuation": 95.0,
+        "routing_accuracy": 90.0
+      },
+      "per_check_counts": {
+        "no_markdown_wrapper": 80,
+        "valid_json": 80,
+        "strict_schema": 74,
+        "spoken_word_count_5_to_22": 76,
+        "zero_sycophancy": 76,
+        "tts_safe_punctuation": 76,
+        "routing_accuracy": 72
+      }
+    },
+    "dpo_minimal": {
+      "stage": "dpo_minimal",
+      "system_prompt_type": "minimal",
+      "prefill_system_tokens": 10,
+      "training_config": "KL-anchored beta=0.5, lr=1e-6, 15 steps, warmup_steps=3",
+      "notes": "Eliminates alignment tax while preserving +21.25 pp compliance gain over the 1,922-token baseline.",
+      "total_samples": 80,
+      "full_compliance_count": 73,
+      "full_compliance_rate": 91.25,
+      "per_check_pass_rates": {
+        "no_markdown_wrapper": 100.0,
+        "valid_json": 100.0,
+        "strict_schema": 97.5,
+        "spoken_word_count_5_to_22": 100.0,
+        "zero_sycophancy": 100.0,
+        "tts_safe_punctuation": 100.0,
+        "routing_accuracy": 93.75
+      },
+      "per_check_counts": {
+        "no_markdown_wrapper": 80,
+        "valid_json": 80,
+        "strict_schema": 78,
+        "spoken_word_count_5_to_22": 80,
+        "zero_sycophancy": 80,
+        "tts_safe_punctuation": 80,
+        "routing_accuracy": 75
+      }
+    }
+  }
+}
