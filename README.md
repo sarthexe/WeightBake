@@ -15,6 +15,8 @@ Real-time enterprise voice gateways face a structural latency bottleneck: produc
 - **15.77x to 42.98x** faster P50 TTFT (`78.35x` faster P95 TTFT and **9.77x** RPS throughput at `C=32`)
 - **15.27x** KV-cache memory compression per active voice session (`71.93 MiB` $\rightarrow$ `4.71 MiB`)
 
+> 📘 **New to this repo?** Read the **[Complete Engineering Walkthrough & Deep-Dive Guide](docs/WEIGHTBAKE_COMPLETE_GUIDE.md)** — a full explanation of the problem, the physics/math behind every design choice, and a file-by-file tour of all seven components.
+
 ---
 
 ## System Architecture
@@ -99,6 +101,75 @@ $$\text{KV Bytes / Token} = 2 \times 36 \times 2 \times 128 \times 2 = 36,864\te
 3. **Zero-Overhead 16-Bit LoRA Weight Folding (`src/train/merge_weights.py`)**:
    $$W_{\text{merged}} = W_0 + \frac{\alpha}{r} B A$$
    Forward-pass equivalence is verified across all 7 linear projections (`q_proj`, `k_proj`, `v_proj`, `o_proj`, `gate_proj`, `up_proj`, `down_proj`) with max absolute error **$\le 3.81 \times 10^{-6}$**.
+
+---
+
+## Architectural Trade-offs & When Not to Use
+
+WeightBake compresses one specific class of prompt content: the **stable, behavioral** part. Treating it as a general-purpose "prompt compressor" is the fastest way to a bad deployment. The guidance below is what we would hand a platform team before they point production traffic at a distilled checkpoint.
+
+### 1. Static Behavioral Invariants vs. Volatile Routing Rules (Rule Churn)
+
+The 1,922-token prompt we distill is roughly **85% static behavioral invariants**:
+
+- the output contract (strict JSON schema, `extra="forbid"`, exactly 6 top-level keys),
+- ElevenLabs TTS prosody limits (`spoken_response` 5–22 words, TTS-safe punctuation),
+- anti-sycophancy constraints (13 banned filler phrases),
+- the core 8-intent taxonomy and 7 tool-argument schemas.
+
+These change on the cadence of a model release (weeks to months), and every one of those tokens is re-paid on **every single call**. That is exactly the trade WeightBake makes: a one-off SFT + DPO cycle in exchange for permanently deleting the tokens from prefill compute and HBM.
+
+**When not to bake rules into weights.** The remaining ~15% of a real production prompt is volatile business logic that changes on the cadence of a marketing calendar, an incident, or an experiment. Compiling that into weights means every text edit costs a full **SFT + DPO + 7-check eval + T4 benchmark** cycle (hours to days), plus a regression window, instead of a diff and a canary:
+
+| Content | Churn cadence | Correct home | Why |
+|---|---|---|---|
+| JSON schema / output contract | quarterly | **Weights** | Invariant; every saved token is saved on every call |
+| TTS prosody limits, anti-sycophancy bans | quarterly | **Weights** | Stylistic contract, no business meaning |
+| Core intent taxonomy & tool arg contracts | monthly–quarterly | **Weights** (or per-tenant LoRA) | Slow-moving routing grammar |
+| Temporary holiday hours | days | Runtime metadata slot / config | Changes several times a year |
+| Promotional routing overrides | hours–days | Runtime metadata slot / config | Campaign-scoped |
+| Live outage flags, `call_id`, UTC timestamp, customer tier | per-call | Runtime metadata slot | Cannot be trained in at all |
+| Rapidly changing A/B variants | hours | External config / router | Experimentation must stay cheap |
+
+For churny logic, a **lightweight 20–30 token runtime metadata slot** appended *below* the 10-token trigger keeps TTFT near the distilled floor while staying fully editable:
+
+```text
+Respond as the deterministic voice router in raw JSON.
+ROUTING_OVERRIDES: holiday_hours=true; promo=billing_credit_2x; outage=billing_api; tier=gold
+```
+
+That slot costs roughly **20–30 prefill tokens** (~5.8 MiB KV per session versus 4.71 MiB at 10 tokens, still **12.4x** below the 71.93 MiB bloated baseline) and — more importantly — **zero training cycles**. Reserve weight-space for behavior that has stopped moving.
+
+**Recommended two-stage production lifecycle:**
+
+1. **Discovery in prompt space.** Iterate on the bloated prompt. Schema, taxonomy, and guardrails are still moving, so every change stays a text edit with instant rollback and no eval gate.
+2. **Compile stable invariants into weights once traffic scales.** When a block of behavior has been stable for long enough to trust it and call volume justifies the GPU spend, freeze it into a checkpoint and collapse the runtime prompt to the 10-token trigger. Re-bake on the same cadence as model upgrades, not per feature launch.
+3. **Tenant-specific routing variants → `vLLM` multi-LoRA adapters.** Serve one merged base plus per-tenant LoRAs (`--enable-lora --max-loras 8 --max-lora-rank 16`, matching our `r=16` SFT config) and route by tenant ID, instead of duplicating full 3B checkpoints per dialect. Keep *policy* in config and *behavior* in adapters so an experiment never requires retraining.
+
+### 2. Automatic Prefix Caching (APC) vs. Cold-Start & Dynamic Metadata
+
+The T4 baseline was benchmarked with **`--no-enable-prefix-caching`** deliberately. Production voice gateways are multi-tenant, and their prompt templates inject per-call metadata near the top — `call_id`, UTC timestamps, customer tier, live outage flags. `vLLM`'s APC keys KV blocks by the **exact hash of the token prefix**, so a changing `call_id` or timestamp in the first few dozen tokens invalidates the hash for *every* request. The nominal hit rate collapses toward zero, and each call pays full prefill of all 1,922 system tokens. Measuring with APC enabled would have reported a warm-cache best case that production never sees.
+
+Even when APC *does* hit, it is not free:
+
+- **Cached blocks still occupy physical KV-cache VRAM.** The 71.93 MiB/session footprint survives a hit; APC saves recompute, not HBM. Session capacity stays at ~113 per 8.0 GiB KV budget.
+- **Cold starts and evictions still pay the full penalty.** First request after a deploy, scale-out, or cache eviction under `C=32` pressure pays the whole **1,452.85 ms** prefill — the number a caller actually feels.
+- **Any metadata change above the cacheable region re-pays it again.** Cache benefit is contingent on prompt construction staying byte-stable, which multi-tenant gateways rarely guarantee.
+
+WeightBake removes the tokens from **both compute and HBM**: no prefix to hash, no blocks to evict, **4.71 MiB/session regardless of cache state**, and deterministic TTFT on the *first* call after deploy rather than only the warm ones.
+
+> **Roadmap / honesty note:** the next benchmark pass adds a **warm `--enable-prefix-caching` baseline column** (static prompt, no per-call metadata — APC's best case) so the gap is quantified rather than assumed. If your gateway truly serves a byte-identical prefix to warm caches, APC will narrow the TTFT multiple below the 15.77x–42.98x reported here; WeightBake's advantages in KV VRAM, session capacity, and cold-start latency remain.
+
+### 3. Holdout Generalization & Adversarial Phrasing
+
+The **80 holdout queries** are strictly deduplicated from the **800 training queries** (zero `user_query` overlap, disjoint account/service entity pools) and were generated with **separate phrasing templates**, so `91.25%` measures rule generalization rather than memorization of training surface forms.
+
+The caveat: template-generated holdouts still share the *distribution* of our phrasing. Baked behavior is **rigid by design** — the 10-token trigger is a strong prior, and when a runtime override contradicts a baked-in default (e.g. `promo=waive_fee` against a baked "never promise credits"), the weights can silently win. That failure mode is invisible to a same-distribution eval.
+
+- **Planned next:** an adversarial / out-of-distribution phrasing suite — paraphrases, disfluent ASR transcripts, code-switching, multi-intent utterances, prompt injection, and explicit override-conflict cases — specifically to stress-test instruction rigidity when runtime metadata conflicts with baked defaults.
+- **Until it lands, gate releases on your own data:** draw a holdout from real transcripts, track `strict_schema` violations and **override-adherence** as separate metrics, and keep a 1–5% shadow control on the bloated prompt so drift is measurable.
+
+**Bottom line — use WeightBake when** your prompt is large, mostly invariant, and re-paid on every call at high concurrency, and you can afford a periodic retraining cadence. **Do not use it when** routing rules change weekly, per-call metadata dominates the prompt, or your traffic is low enough that one 1,452.85 ms prefill is cheaper than owning a fine-tuning pipeline.
 
 ---
 
